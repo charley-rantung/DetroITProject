@@ -5,22 +5,23 @@ class List extends React.Component{
     constructor(){
         super();
         this.state = {
-            students: [
-                {
-                    id:1,
-                    name:'John',
-                    faculty:'Computer Science'
-                },
-                {id:2,
-                    name:'Jane',
-                    faculty:'Bussiness'},
-                {id:3,
-                    name:'Bob',
-                    faculty:'Nurse'},
-                {id:4,
-                    name:'Mike',
-                    faculty:'Computer Science'},
-            ],
+            // students: [
+            //     {
+            //         id:1,
+            //         name:'John',
+            //         faculty:'Computer Science'
+            //     },
+            //     {id:2,
+            //         name:'Jane',
+            //         faculty:'Bussiness'},
+            //     {id:3,
+            //         name:'Bob',
+            //         faculty:'Nurse'},
+            //     {id:4,
+            //         name:'Mike',
+            //         faculty:'Computer Science'},
+            // ],
+            users: [],
             refreshing: false
         }
     }
@@ -34,6 +35,12 @@ class List extends React.Component{
             refreshing: false,
             students: data
         })
+    }
+
+    componentDidMount = () => {
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response =>response.json())
+        .then(json => this.setState({users: json}))
     }
 
     render(){
